@@ -1,0 +1,13 @@
+#!/bin/bash -ex
+install()
+{
+    apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get -y \
+        -o DPkg::Options::=--force-confdef \
+        -o DPkg::Options::=--force-confold \
+        install $@
+}
+
+# change shared folder options to allow anyone in group to write any files
+CONF=/etc/samba/smb.conf
+sed -i "/\[cdrom\]/,/^$/ d" $CONF
