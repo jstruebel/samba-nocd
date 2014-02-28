@@ -8,6 +8,6 @@ install()
         install $@
 }
 
-# change shared folder options to allow anyone in group to write any files
+# remove cdrom share from samba config
 CONF=/etc/samba/smb.conf
 sed -i "/\[cdrom\]/,/^$/ d" $CONF
